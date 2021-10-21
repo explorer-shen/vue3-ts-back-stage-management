@@ -1,6 +1,8 @@
 import { RouteRecordRaw } from 'vue-router'
 import type { breadcrumb } from '../components/nav-header/type/type'
 
+export let firstRouter: RouteRecordRaw | undefined = undefined
+
 export function mapMenuToRoter(menus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = []
 
@@ -23,6 +25,7 @@ export function mapMenuToRoter(menus: any[]): RouteRecordRaw[] {
         if (route) {
           routes.push(route)
         }
+        if (!firstRouter) firstRouter = route
       } else startMap(menu.children ?? [])
     }
   }

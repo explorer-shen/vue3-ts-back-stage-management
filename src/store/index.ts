@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 import type { iRootState } from './type'
 import { login } from './login/login'
+import { analysis } from './main/analysis/analysis'
 
 export const store = createStore<iRootState>({
   state() {
@@ -10,7 +11,8 @@ export const store = createStore<iRootState>({
     }
   },
   modules: {
-    login
+    login,
+    analysis
   }
 })
 

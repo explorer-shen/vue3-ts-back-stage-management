@@ -37,9 +37,15 @@ export default defineComponent({
 .main {
   height: 100%;
   width: 100%;
+  .header {
+    height: 45px;
+  }
   .page {
     width: 100%;
     height: 100%;
+    .content {
+      background: #f0f2f5;
+    }
   }
   .aside {
     height: 100%;

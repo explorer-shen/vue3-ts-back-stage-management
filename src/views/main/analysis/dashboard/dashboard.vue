@@ -1,13 +1,29 @@
 <template>
-  <div class="">dashboard</div>
+  <div class=""><PieEcharts :pieData="pieData" /></div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import { useStore } from 'vuex'
+
+import PieEcharts from '@/components/echarts/src/pie-echarts.vue'
 
 export default defineComponent({
   name: '',
-  components: {}
+  components: { PieEcharts },
+  setup() {
+    const store = useStore()
+    store.dispatch('analysis/getDashBoardDataAction')
+
+    const pieData = computed(() => {
+      return store.state.analysis.categoryGoodsCount.map((item: any) => {
+        return { value: item.goodsCount, name: item.name }
+      })
+    })
+    return {
+      pieData
+    }
+  }
 })
 </script>
 

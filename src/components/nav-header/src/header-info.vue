@@ -18,7 +18,9 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item icon="el-icon-circle-close">退出系统</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-circle-close" @click="clickOut"
+              >退出系统</el-dropdown-item
+            >
             <el-dropdown-item icon="el-icon-info" divided>个人信息</el-dropdown-item>
             <el-dropdown-item icon="el-icon-unlock">修改密码</el-dropdown-item>
           </el-dropdown-menu>
@@ -31,15 +33,27 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+
+import cache from '@/utils/LocalCache'
 
 export default defineComponent({
   name: '',
   components: {},
   setup() {
     const store = useStore()
-    console.log(store)
     const userName = store.state.login.userInfo.name
-    console.log(userName)
+
+    const router = useRouter()
+    const clickOut = () => {
+      cache.removeCache('token')
+      router.push('/login')
+    }
+
+    return {
+      userName,
+      clickOut
+    }
   }
 })
 </script>

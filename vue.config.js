@@ -15,7 +15,8 @@ module.exports = {
     resolve: {
       alias: {
         views: '@/views'
-      }
+      },
+      extensions: ['.js', '.json', '.wasm', '.vue', '.ts']
     }
   }
 }
